@@ -12,7 +12,24 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 
 // Connect
-mongoose.connect('mongodb://localhost:27017/dailyTask');
+const mongoUrl =
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/dailyTask';
+mongoose.connect(mongoUrl, (err, db) => {
+  if (err) throw err;
+  var dbo = db.db('heroku_0k9fwhj4');
+  dbo.createCollection('tasklist', (err, res) => {
+    if (err) throw err;
+    db.close();
+  });
+  dbo.createCollection('TokenList', (err, res) => {
+    if (err) throw err;
+    db.close();
+  });
+  dbo.createCollection('users', (err, res) => {
+    if (err) throw err;
+    db.close();
+  });
+});
 
 // Create Token
 const createAccessToken = (user) => {
