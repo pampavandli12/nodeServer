@@ -18,5 +18,5 @@ app.options('*', cors());
 app.use('/api', api);
 
 //Set Port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // CHange to meet Heroku
 app.listen(port, () => console.log('server started at port 3000'));

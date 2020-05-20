@@ -13,23 +13,8 @@ const config = require('./config');
 
 // Connect
 const mongoUrl =
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/dailyTask';
-mongoose.connect(mongoUrl, (err, db) => {
-  if (err) throw err;
-  var dbo = db.db('heroku_0k9fwhj4');
-  dbo.createCollection('tasklist', (err, res) => {
-    if (err) throw err;
-    db.close();
-  });
-  dbo.createCollection('TokenList', (err, res) => {
-    if (err) throw err;
-    db.close();
-  });
-  dbo.createCollection('users', (err, res) => {
-    if (err) throw err;
-    db.close();
-  });
-});
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/dailyTask'; // Changed to meet Heroku
+mongoose.connect(mongoUrl);
 
 // Create Token
 const createAccessToken = (user) => {
