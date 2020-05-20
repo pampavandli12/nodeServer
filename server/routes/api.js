@@ -90,6 +90,8 @@ router.all('/signup', (req, res) => {
                 userID: userID,
                 username: username,
               });
+              console.log('success signup');
+              console.log(results);
               var data = {
                 userID: userID,
                 username: username,
