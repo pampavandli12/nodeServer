@@ -35,14 +35,10 @@ const authenticateToken = (req, res, next) => {
 router.all('/signin', (req, res) => {
   var userID = req.body.userId;
   var password = md5(req.body.password);
-  console.log('posting to signin');
   users.find({ userID: userID }, (err, results) => {
     if (err) {
       res.status(500).send({ message: 'Something went wrong' });
     }
-    console.log('no error');
-    console.log(results.length);
-    console.log(results);
     if (results.length > 0) {
       if (results[0].password === password) {
         var data = {
@@ -69,14 +65,10 @@ router.all('/signup', (req, res) => {
   var username = req.body.username;
   var userID = req.body.userID;
   var password = md5(req.body.password);
-  console.log('posting to signup');
   users.find({ userID: userID }, (err, results) => {
     if (err) {
       res.status(500).send({ message: 'Something went wrong' });
     } else {
-      console.log('no error');
-      console.log(results.length);
-      console.log(results);
       if (results.length > 0) {
         res.status(401).send({ message: 'Email already registered' });
       } else {
