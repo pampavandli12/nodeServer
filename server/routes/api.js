@@ -35,6 +35,7 @@ const authenticateToken = (req, res, next) => {
 router.all('/signin', (req, res) => {
   var userID = req.body.userId;
   var password = md5(req.body.password);
+  console.log('posting to signin');
   users.find({ userID: userID }).exec(function (err, results) {
     if (err) {
       res.status(500).send({ message: 'Something went wrong' });
