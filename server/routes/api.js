@@ -40,6 +40,9 @@ router.all('/signin', (req, res) => {
     if (err) {
       res.status(500).send({ message: 'Something went wrong' });
     }
+    console.log('no error');
+    console.log(results.length);
+    console.log(results);
     if (results.length > 0) {
       if (results[0].password === password) {
         var data = {
